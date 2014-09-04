@@ -1,0 +1,65 @@
+/*
+ * @name:煮牛肉;
+ * @author:tqtan;
+ * @site:http://targetkiller.net/;
+ * @date:2014/8/13;
+*/
+
+html, body, div, span, iframe, h1, h2, h3, h4, h5, h6, p, blockquote,a,address,
+em, img, ol, ul, li, fieldset, form, label, legend, table, tbody, tfoot, thead, tr, th, td,i,b,s {
+    margin:0; padding:0; border:0; font-weight:inherit; font-style:inherit; font-size:100%;font-family:Helvetica,'microsoft yahei',Arial,sans-serif;
+}
+ul,ol{list-style: none}
+a img { border:none;vertical-align: top; }
+a {text-decoration: none;}
+button {overflow:visible;padding:0;margin:0;border:0 none;background-color:transparent;}
+button::-moz-focus-inner { padding:0;}
+textarea,input{background:none;padding:0;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;-webkit-appearance:none;}
+input[type=password] {-webkit-text-security:disc;}
+textarea:focus,input:focus,button:focus{outline:none;}
+body {word-wrap:break-word;}
+* {-webkit-tap-highlight-color:rgba(0,0,0,0);}
+body{margin: 0;background-color: #6f1e1e;}
+.hide{display: none!important;}
+
+.container{width: 100%;height: 100%;background-color: #6f1e1e;position: relative;font-size: 'Helvetica Neue', Helvetica, 'Source Sans Pro', 'Hiragino Sans GB', 'Microsoft Yahei', arial, sans-serif;}
+.container-low{margin-top: -44px;overflow: hidden;height: 524px;}
+
+#score{width: 100%;height: 47px;position: absolute;top: 43px;left: 0;line-height: 47px;color: #fff;text-align: center;font-size: 22px;z-index: 998;}
+#progress{width: 100%;height: 2px;background-color: #2ecc71;position: absolute;top: 90px;z-index: 998;}
+
+.center{width: 320px;overflow: hidden;position: relative;text-align: center;letter-spacing: -5px;font-size: 0;height: 568px;left: 50%;transform:translateX(-50%);-webkit-transform:translateX(-50%);z-index: 19;}
+.pan-wrap{width: 320px;height: 294px;background-image: url(img/slice/panel.32.png);background-repeat: no-repeat;position: absolute;top: 50%;transform:translateY(-50%);-webkit-transform:translateY(-50%);}
+.pan-wrap .pan{position: absolute;width: 320px;height: 451px;background-image: url(img/slice/pan.32.png);background-repeat: no-repeat;}
+.beef{display: inline-block;width: 171px;height: 169px;background-image: url(img/slice/beef-normal.32.png);position: absolute;z-index: 9999;transform:translateX(-50%);-webkit-transform:translateX(-50%);top: 50px;}
+.beef-hit{background-image: url(img/slice/beef-hit.32.png)}
+.p{display: block;width: 33px;height: 32px;position: absolute;opacity: 0.8;}
+.p1{background-image: url(img/slice/p1.32.png);top: 266px;left: 140px;}
+.p2{background-image: url(img/slice/p2.32.png);top: 208px;left: 163px;}
+.p3{background-image: url(img/slice/p3.32.png);top: 298px;left: 150px;}
+.p4{background-image: url(img/slice/p4.32.png);top: 272px;left: 178px;}
+.p5{background-image: url(img/slice/p5.32.png);top: 280px;left: 198px;}
+.p6{background-image: url(img/slice/p6.32.png);top: 311px;left: 117px;}
+.p7{background-image: url(img/slice/p7.32.png);top: 317px;left: 87px;}
+.p8{background-image: url(img/slice/p8.32.png);top: 319px;left: 94px;}
+.p9{background-image: url(img/slice/p9.32.png);top: 294px;left: 61px;}
+
+
+.welcome-bottom{position: absolute;top: 414px;width: 100%;height: 100%;background-color: #000;}
+
+.welcome{width: 320px;height: 568px;background-image: url(img/welcome.32.png);position: absolute;top: 0;left: 50%;transform:translateX(-50%);-webkit-transform:translateX(-50%);}
+.welcome .btn{width: 114px;height: 28px;display: block;position: absolute;top: 444px;}
+.welcome .btn-start{left: 106px;}
+.welcome .welcome-txt{color: #fff;text-align: center;position: absolute;width: 100%;bottom: 50px;font-size: 14px;}
+
+.end{position: absolute;top: 0;left: 0;width: 100%;height: 100%;background-color: rgba(0,0,0,0.8);z-index: 999}
+.end .end-bg{background-image: url(img/end.32.png);width: 320px;height: 568px;position: relative;margin: 0 auto;}
+.end .btn{width: 106px;height: 38px;display: block;position: absolute;top: 402px;}
+.end .btn-again{background-image: url(img/slice/btn-again.32.png);left: 45px;}
+.end .btn-share{background-image: url(img/slice/btn-share.32.png);left: 170px;}
+.end .btn-focus{background-image: url(img/slice/btn-focus.32.png);width: 175px;height: 40px;position: absolute;left: 74px;top: 468px;}
+.end .result{position: absolute;top: 290px;width: 100%;text-align: center;color: #000;font-size: 18px;line-height: 26px;}
+.end .reward{position: absolute;top: 316px;width: 100%;text-align: center;color: #000;font-size: 18px;line-height: 26px;}
+
+.share{position: absolute;top: 0;left: 0;width: 100%;height: 100%;background-color: rgba(0,0,0,0.8);z-index: 1000}
+.share .share-bg{background-image: url(img/share.32.png);width: 320px;height: 568px;position: relative;margin: 0 auto;}
