@@ -8,7 +8,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>煮牛肉</title>
+	<title>打牛肉</title>
 	<meta name="description" content="">
 	<meta name="HandheldFriendly" content="True">
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no" />  
@@ -19,12 +19,22 @@
 	<div class="container">
 		<div class="hide" id="score">0</div>
 		<div class="hide" id="progress"></div>
+		<div class="wine-item hide"></div>
 		<div class="center hide">
+			<div class="tips" id="gametips">快速打牛肉!</div>
 			<div class="pan-wrap">
-				<div class="pan"></div>
+				<!-- <div class="pan"></div> -->
 				<div class="beef"></div>
+				<div class="wine hide"></div>
+				<div class="water hide"></div>
 			</div>
-			<div class="p-wrap">
+			<div class="b-wrap">
+				<div class="blood b1"></div>
+				<div class="blood b2"></div>
+				<div class="blood b3"></div>
+				<div class="blood b4"></div>
+			</div>
+			<!-- <div class="p-wrap">
 				<div class="p p1 hide"></div>
 				<div class="p p2 hide"></div>
 				<div class="p p3 hide"></div>
@@ -34,16 +44,22 @@
 				<div class="p p7 hide"></div>
 				<div class="p p8 hide"></div>
 				<div class="p p9 hide"></div>
-			</div>
+			</div> -->
 		</div>
-		<div class="welcome-bottom"></div>
-		<div class="welcome">
+		<!-- <div class="welcome-bottom "></div> -->
+		<div class="welcome ">
+			<div class="bg"></div>
+			<!-- <div class="title"></div> -->
+			<!-- <div class="woman"></div> -->
+			<!-- <div class="pan"></div> -->
 			<a href="javascript:void(0)" class="btn btn-start"></a>
+			<div class="welcome-txt">计仔：<br />想肉比较软嫩，在煎牛扒前先用松肉捶打一下，用刀背替代锤子也是可以的哦~</div>
 		</div>
 		<div class="end hide">
 			<div class="end-bg">
-				<p class="result">不慌不忙，我做了0碟牛肉</p>
-				<p class="reward">获得打酱油的称号!</p>
+				<div class="result-img"></div>
+				<p class="result">我打了0碟牛肉</p>
+				<p class="reward">太硬了，没什么人想吃</p>
 				<a href="javascript:void(0)" class="btn btn-again"></a>
 				<a href="javascript:void(0)" class="btn btn-share"></a>
 				<a href="javascript:void(0)" class="btn-focus"></a>
@@ -52,6 +68,18 @@
 		<div class="share hide">
 			<div class="share-bg"></div>
 		</div>
+	<!-- 	<div class="loading">
+			<div class="spinner">
+			  <div class="rect1"></div>
+			  <div class="rect2"></div>
+			  <div class="rect3"></div>
+			  <div class="rect4"></div>
+			  <div class="rect5"></div>
+			</div>
+		</div> -->
+		<video id="video">
+			<source src="click.ogg" type="audio/ogg">
+		</video>
 	</div>
 	<script src="js/zepto.js"></script>
     <script src="js/dragdrop.js"></script>

@@ -8,20 +8,35 @@
 // 公用变量
 var score = 0;
 var totalTime = 20;
+var scoreDistance =1;//分数加值
+var wineOccurTime = 10000;
+var wineDurationTime = 5000;
 var time = totalTime;
 var time_cut = 0.01;
 var lastTime = 500;
 var occurTime = 1000;
 var timeInter;
+var loadingTime = 500;
+var sound = $("#video")[0];
+
+var w_sprite = [
+	{x:"0",y:"0"},
+	{x:"171px",y:"0"},
+	{x:"342px",y:"0"}
+];
+var w_sprite_index = 0;
 
 // 适应矮屏手机320x480
 var bHeight = $(window).height();
+$('.loading').height(bHeight+44);
+$('.welcome-bottom').height(bHeight-414);
 if(bHeight<481){
     $('.container').addClass('container-low');
+	$('.welcome-bottom').height(bHeight-369);
 }
 
+setTimeout(function(){$('.loading').addClass('hide');},loadingTime);
 // 让欢迎动画下方为黑色
-$('.welcome-bottom').height(bHeight-414);
 
 function initConfig(){
 	score = 0;
@@ -60,16 +75,11 @@ function updateScore(){
 }
 
 function getName(){
-	var name = '打酱油';
-	if(score > 40){name = '牛之神';}
-	else if(score > 35){name = '肉皇大帝';}
-	else if(score > 30){name = '牛魔王';}
-	else if(score > 25){name = '米其林三星主厨';}
-	else if(score > 20){name = '厨神';}
-	else if(score > 15){name = '厨王';}
-	else if(score > 10){name = '高级厨师';}
-	else if(score > 5){name = '小厨师';}
-	else{name = '打酱油';}
+	var name = '牛排好像还是有点硬诶';
+	if(score > 200){name = '终于做成了传说中的劲弹牙牛肉丸，牙都弹飞了几只。';$('.result-img').addClass('wanzi');}
+	else if(score > 150){name = '做成的牛扒鲜嫩可口，简直超越了lan翔厨师的水平。';$('.result-img').addClass('done');}
+	else if(score > 100){name = '妈妈夸我做得棒。';$('.result-img').addClass('dry');}
+	else{name = '牛排好像还是有点硬诶';}
 
 	return name;
 }
@@ -102,17 +112,25 @@ function startGame(){
 		updateTime();
 
 	},10);
+
+
+	// wineOccurTime时间后出现酒
+	setTimeout(function(){
+		$('#gametips').text("点击酒瓶道具有惊喜噢！");
+		$('.wine-item').removeClass("hide");
+	},wineOccurTime);
 }
 
 function gameover(){
- 	var shareMsg = '不慌不忙，我做了'+score+'碟牛肉';
- 	var reward = '获得了'+getName()+'的称号！';
+ 	var shareMsg = '我打了'+score+'下牛肉';
+ 	var reward = getName();
  	$('.result').text(shareMsg);
  	$('.reward').text(reward);
 	shareInfo.shareTitle = shareMsg+','+reward;
 
 	clearInterval(timeInter);
 
+	$('.wine-item').addClass('hide');
  	$('#progress').addClass('hide');
  	$('#score').addClass('hide');
  	$('.end').removeClass('hide');
@@ -164,11 +182,20 @@ document.ontouchmove = function(event){
 }
 
 $('.beef').bind('tap',function(){
-	score++;
+	sound.play();
+	score += scoreDistance;
 	updateScore();
-	$(this).addClass("beef-hit");
-	setTimeout(function(){$('.beef').removeClass("beef-hit")},50);
-	bombEffect();
+	if($(this).hasClass('beef-water')){
+		$(this).addClass("beef-water-hit");		
+		setTimeout(function(){$('.beef').removeClass("beef-water-hit")},50);
+	}
+	else{
+		$(this).addClass("beef-hit");
+		setTimeout(function(){$('.beef').removeClass("beef-hit")},50);
+	}
+	if(score > 200){
+		bombEffect();
+	}
 });
 
 // 按钮监听
@@ -193,6 +220,34 @@ $('.share').bind('tap',function(){
 	$('.share').addClass('hide');
 });
 
+// 倒酒
+$('.wine-item').bind('tap',function(){
+	$(this).addClass("hide");
+	$('.wine').removeClass("hide");
+	$('.water').removeClass("hide");
+	$('#gametips').text("淋过酒的牛肉涨分3倍！");
+
+	// 倒酒动画
+	var waterInterval = setInterval(function(){
+		$(".water").css("background-position",w_sprite[(w_sprite_index++)%w_sprite.length].x,w_sprite[(w_sprite_index++)%w_sprite.length].x);
+		// 酒状态过程中
+		scoreDistance = 3;
+		$('.beef').addClass('beef-water');
+
+		// 加水状态结束
+		if(w_sprite_index>32){
+			scoreDistance=1;
+			clearInterval(waterInterval);
+			$('#gametips').text("快速打牛肉");
+
+			// 200x40=8s后倒水结束
+			w_sprite_index=0;
+			$('.wine').addClass("hide");
+			$('.water').addClass("hide");
+			$('.beef').removeClass('beef-water');
+		};
+	},200);
+});
 // test
 // startGame();
 
@@ -202,8 +257,8 @@ var shareInfo = {
 	appid: '',
     imgUrl: 'http://qzonestyle.gtimg.cn/aoi/sola/20140819153418_gQEOOUKEvO.jpg',
     lineLink: 'http://m.isux.us/code/cook/cook.html',
-	descContent: '你能煮好多少碟牛肉？有能力来试试！',
-	shareTitle: '一起来煮牛肉吧！'
+	descContent: '你能打出怎么样的牛肉？有能力来试试！',
+	shareTitle: '一起来打牛肉吧！'
 }
 function shareFriend() {
     WeixinJSBridge.invoke('sendAppMessage',{
